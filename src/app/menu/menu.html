@@ -1,0 +1,14 @@
+<section class="menu">
+  <h2>Popular Indian Dishes</h2>
+  <div class="cards">
+    @for (food of foods; track food.name) {
+      <div class="card">
+        <img [src]="food.image" [alt]="food.name" />
+        <div class="content">
+          <h3>{{ food.name }}</h3>
+          
+        </div>
+      </div>
+    }
+  </div>
+</section>

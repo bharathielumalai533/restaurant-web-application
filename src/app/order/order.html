@@ -1,0 +1,75 @@
+<div class="order-page">
+
+  <div class="order-header">
+    <button class="back-btn" (click)="goBack()">← Back</button>
+    <h1>🍛 Select Your Items</h1>
+  </div>
+
+  <div class="order-content">
+
+    <!-- Left: All items to select -->
+    <div class="items-section">
+      <h2>Our Menu</h2>
+      <div class="item-list">
+        @for (food of foods; track food.name) {
+          <div class="item-card">
+            <img [src]="food.image" [alt]="food.name" />
+            <div class="item-info">
+              <h3>{{ food.name }}</h3>
+              <p class="item-price">₹{{ food.price }}</p>
+            </div>
+            <div class="qty-control">
+              <button (click)="decrease(food)">−</button>
+              <span>{{ food.qty }}</span>
+              <button (click)="increase(food)">+</button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Right: Bill summary -->
+    <div class="order-summary">
+      <h2>Bill Summary</h2>
+
+      @if (orderedItems.length === 0) {
+        <div class="empty">
+          <p>No items selected yet.</p>
+          <p>Add items from the menu 👈</p>
+        </div>
+      } @else {
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of orderedItems; track item.name) {
+              <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.qty }}</td>
+                <td>₹{{ item.price * item.qty }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <div class="total">
+          <span>Total Bill</span>
+          <span>₹{{ totalBill }}</span>
+        </div>
+      }
+
+      <button class="confirm-btn" (click)="confirmOrder()" [disabled]="totalBill === 0">
+        ✅ Confirm Order
+      </button>
+      <button class="cancel-btn" (click)="goBack()">
+        ✕ Cancel
+      </button>
+    </div>
+
+  </div>
+</div>

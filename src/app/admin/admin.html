@@ -1,0 +1,160 @@
+<div class="admin-page">
+
+  <!-- Header -->
+  <div class="admin-header">
+    <div class="header-left">
+      <h1>🍛 SpiceHouse Admin</h1>
+      @if (pendingCount > 0) {
+        <span class="badge">{{ pendingCount }} New Orders!</span>
+      }
+    </div>
+    <button class="home-btn" (click)="goHome()">← Back to Site</button>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button [class.active]="activeTab === 'orders'" (click)="activeTab = 'orders'">
+      📋 Orders
+      @if (pendingCount > 0) {
+        <span class="tab-badge">{{ pendingCount }}</span>
+      }
+    </button>
+    <button [class.active]="activeTab === 'menu'" (click)="activeTab = 'menu'">
+      🍽️ Menu Items
+    </button>
+  </div>
+
+  <!-- ORDERS TAB -->
+  @if (activeTab === 'orders') {
+    <div class="tab-content">
+      @if (orders.length === 0) {
+        <div class="no-orders">
+          <p>📭 No orders yet.</p>
+        </div>
+      } @else {
+        <div class="orders-grid">
+          @for (order of orders; track order.id) {
+            <div class="order-card" [class]="order.status.toLowerCase()">
+              <div class="order-top">
+                <div>
+                  <h3>Order #{{ order.id % 1000 }}</h3>
+                  <p class="order-time">🕐 {{ order.time }}</p>
+                </div>
+                <span class="status-badge" [class]="order.status.toLowerCase()">
+                  {{ order.status }}
+                </span>
+              </div>
+
+              <div class="order-items">
+                @for (item of order.items; track item.name) {
+                  <div class="order-item-row">
+                    <span>{{ item.name }} × {{ item.qty }}</span>
+                    <span>₹{{ item.price * item.qty }}</span>
+                  </div>
+                }
+              </div>
+
+              <div class="order-total">
+                <span>Total</span>
+                <span>₹{{ order.total }}</span>
+              </div>
+
+              <div class="status-actions">
+                <button
+                  [class.active-btn]="order.status === 'Pending'"
+                  (click)="updateStatus(order.id, 'Pending')">
+                  🕐 Pending
+                </button>
+                <button
+                  [class.active-btn]="order.status === 'Preparing'"
+                  (click)="updateStatus(order.id, 'Preparing')">
+                  👨‍🍳 Preparing
+                </button>
+                <button
+                  [class.active-btn]="order.status === 'Completed'"
+                  (click)="updateStatus(order.id, 'Completed')">
+                  ✅ Completed
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  <!-- MENU TAB -->
+  @if (activeTab === 'menu') {
+    <div class="tab-content">
+      <div class="menu-header">
+        <h2>Menu Items</h2>
+        <button class="add-btn" (click)="showAddForm = !showAddForm">
+          + Add New Item
+        </button>
+      </div>
+
+      <!-- Add Form -->
+      @if (showAddForm) {
+        <div class="form-card">
+          <h3>Add New Item</h3>
+          <div class="form-grid">
+            <input [(ngModel)]="newFood.name" placeholder="Item Name" />
+            <input [(ngModel)]="newFood.price" type="number" placeholder="Price (₹)" />
+            <input [(ngModel)]="newFood.image" placeholder="Image path (e.g. /assets/images/dosa.jpg)" />
+            <select [(ngModel)]="newFood.category">
+              <option>Veg</option>
+              <option>Non-Veg</option>
+              <option>Drinks</option>
+              <option>Desserts</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button class="save-btn" (click)="addFood()">✅ Add Item</button>
+            <button class="cancel-btn" (click)="showAddForm = false">✕ Cancel</button>
+          </div>
+        </div>
+      }
+
+      <!-- Menu List -->
+      <div class="menu-list">
+        @for (food of foods; track food.id) {
+          <div class="menu-item-card">
+
+            @if (editingFood?.id === food.id) {
+              <!-- Edit Mode -->
+              <div class="edit-form">
+                <input [(ngModel)]="editingFood!.name" placeholder="Name" />
+                <input [(ngModel)]="editingFood!.price" type="number" placeholder="Price" />
+                <input [(ngModel)]="editingFood!.image" placeholder="Image path" />
+                <select [(ngModel)]="editingFood!.category">
+                  <option>Veg</option>
+                  <option>Non-Veg</option>
+                  <option>Drinks</option>
+                  <option>Desserts</option>
+                </select>
+                <div class="edit-actions">
+                  <button class="save-btn" (click)="saveEdit()">✅ Save</button>
+                  <button class="cancel-btn" (click)="cancelEdit()">✕ Cancel</button>
+                </div>
+              </div>
+            } @else {
+              <!-- View Mode -->
+              <img [src]="food.image" [alt]="food.name" />
+              <div class="menu-item-info">
+                <h3>{{ food.name }}</h3>
+                <p>₹{{ food.price }}</p>
+                <span class="category-tag">{{ food.category }}</span>
+              </div>
+              <div class="menu-item-actions">
+                <button class="edit-btn" (click)="startEdit(food)">✏️ Edit</button>
+                <button class="delete-btn" (click)="deleteFood(food.id)">🗑️ Delete</button>
+              </div>
+            }
+
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+</div>

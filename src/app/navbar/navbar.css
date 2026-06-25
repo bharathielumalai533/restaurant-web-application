@@ -1,0 +1,51 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background: #1a1a1a;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f5a623;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #f5a623;
+}
+.admin-link {
+  color: #f5a623 !important;
+  font-weight: bold;
+  border: 1px solid #f5a623;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.admin-link:hover {
+  background: #f5a623 !important;
+  color: white !important;
+}
