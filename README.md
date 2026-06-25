@@ -1,59 +1,78 @@
-# RestaurantApp
+🍽️ Restaurant Web Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.14.
+A modern and responsive restaurant web application developed using Angular. The application provides an engaging user experience with an elegant interface, allowing users to explore the restaurant, browse menu items, and access restaurant information with ease.
 
-## Development server
+🌐 Live Demo
 
-To start a local development server, run:
+Live Website:
+https://restaurant-web-application-zeta.vercel.app/
 
-```bash
+📖 Overview
+
+This project was built using Angular to create a responsive and visually appealing restaurant website. It demonstrates modern frontend development practices, reusable components, and responsive layouts to provide a seamless experience across desktop, tablet, and mobile devices.
+
+✨ Features
+Responsive and mobile-friendly design
+Modern and intuitive user interface
+Interactive restaurant homepage
+Menu showcase
+About Us section
+Contact information
+Reusable Angular components
+Fast and optimized performance
+🛠️ Technologies Used
+Angular 21
+TypeScript
+HTML5
+CSS3
+Angular CLI
+Responsive Web Design
+🚀 Installation
+
+Clone the repository:
+
+git clone https://github.com/bharathielumalai533/restaurant-web-application.git
+
+Navigate to the project folder:
+
+cd restaurant-web-application
+
+Install dependencies:
+
+npm install
+
+Run the development server:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open your browser and visit:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+http://localhost:4200/
+🏗️ Build for Production
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The production build will be generated inside the dist/ folder.
 
-## Running unit tests
+📂 Project Structure
+src/
+├── app/
+├── assets/
+├── environments/
+├── styles.css
+└── main.ts
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+public/
+angular.json
+package.json
+🎯 Purpose
 
-```bash
-ng test
-```
+This project was developed to demonstrate frontend development skills using Angular by creating a professional restaurant website with a responsive layout, reusable components, and an enhanced user experience.
 
-## Running end-to-end tests
+👨‍💻 Developer
 
-For end-to-end (e2e) testing, run:
+Bharathi Elumalai
 
-```bash
-ng e2e
-```
+GitHub: https://github.com/bharathielumalai533
+📄 License
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is licensed under the MIT License.
